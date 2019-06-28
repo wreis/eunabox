@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+  db:
+    environment:
+      POSTGRES_DB: eunabox
+      POSTGRES_USER: eunabox
+      POSTGRES_PASSWORD: 34n4b0x
+    restart: always
+    image: postgres:9.6
+    expose:
+      - "5432"
+  redis:
+    restart: always
+    image: redis:latest
+    expose:
+      - "6379"
+  app:
+    build: .
+    volumes:
+      - .:/app
+    environment:
+      DJANGO_SECRET_KEY: 34n4b0x
+      DATABASE_URL: postgres://eunabox:34n4b0x@db/eunabox
+      CACHE_URL: redis://redis
+    links:
+      - db:db
+      - redis:redis
+    ports:
+      - "127.0.0.1:8029:8000"
+    depends_on:
+      - db
+      - redis

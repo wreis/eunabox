@@ -1,0 +1,13 @@
+Django>=2.2,<2.3
+wagtail>=2.5,<2.6
+django-crispy-forms
+uwsgi
+django-storages
+dj-database-url
+django-redis
+django_cache_url
+psycopg2
+django-el-pagination
+django-social-share
+wagtail_blocks
+puput
